@@ -1,262 +1,425 @@
-
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Muskan Study</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muskan Study 🌸</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
 body{
- margin:0;font-family:Arial,sans-serif;
- background:#f6f4ff;color:#222
+  background:#fff5fb;
+  color:#333;
 }
+
 header{
- padding:25px 18px;
- background:linear-gradient(135deg,#7567e8,#aa89ff);
- color:white;border-radius:0 0 28px 28px
+  background:linear-gradient(135deg,#ff69b4,#c77dff);
+  color:white;
+  text-align:center;
+  padding:25px 15px;
 }
-header h1{margin:0;font-size:30px}
-header p{margin:7px 0}
-.tag{
- display:inline-block;background:#ffffff33;
- padding:7px 12px;border-radius:15px;font-size:12px
+
+header h1{
+  font-size:30px;
 }
-main{max-width:680px;margin:auto;padding:18px}
-.grid{
- display:grid;grid-template-columns:1fr 1fr;gap:14px
+
+header p{
+  margin-top:8px;
 }
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  margin:20px 0;
+}
+
 .card{
- background:white;border-radius:16px;padding:20px;
- box-shadow:0 5px 18px #00000012;cursor:pointer
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  cursor:pointer;
 }
-.icon{font-size:32px}
-.card h3{margin:9px 0 4px}
-.card p{margin:0;color:#666;font-size:14px}
-.section{display:none}
-.section.active{display:block}
-.back{
- border:0;background:#7567e8;color:white;
- padding:10px 15px;border-radius:10px
+
+.card:hover{
+  transform:translateY(-3px);
 }
-.profile{
- background:white;padding:22px;border-radius:18px;
- margin-top:15px;box-shadow:0 5px 18px #00000012
+
+.card h3{
+  margin-bottom:8px;
 }
-.avatar{
- width:65px;height:65px;border-radius:50%;
- background:#eadfff;display:flex;align-items:center;
- justify-content:center;font-size:32px;margin-bottom:12px
+
+section{
+  background:white;
+  margin:20px 0;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,.07);
 }
-input{
- width:100%;padding:13px;margin:8px 0;
- border:1px solid #ddd;border-radius:10px
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
 }
+
 button{
- border:0;background:#7567e8;color:white;
- padding:12px 17px;border-radius:10px;cursor:pointer
+  border:none;
+  background:#d63384;
+  color:white;
+  padding:11px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  margin:5px;
 }
-.profileBtn{
- margin-top:15px;width:100%;font-size:16px
+
+button:hover{
+  background:#b52a70;
 }
-.stats{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:8px;margin-top:15px
+
+.hidden{
+  display:none;
 }
-.stat{
- background:#f6f2ff;padding:12px;text-align:center;
- border-radius:12px
+
+.subject{
+  background:#fff0f8;
+  margin:10px 0;
+  padding:15px;
+  border-radius:12px;
 }
-.stat b{display:block;color:#7567e8;font-size:19px}
-footer{text-align:center;padding:25px;color:#777;font-size:13px}
+
+.note{
+  background:#faf5ff;
+  border-left:5px solid #c77dff;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+}
+
+.profile{
+  text-align:center;
+}
+
+.profile-circle{
+  width:80px;
+  height:80px;
+  background:#ff69b4;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:10px auto;
+  font-size:30px;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🌸 Muskan Study</h1>
-<p>Learn • Practice • Grow</p>
-<span class="tag">Created & Designed by Muskan</span>
+  <h1>🌸 Muskan Study</h1>
+  <p>Learn • Practice • Grow</p>
+  <p>Created & Designed by Muskan</p>
 </header>
 
-<main>
+<div class="container">
 
-<!-- PROFILE BUTTON -->
-<div class="profile">
-<h2>👤 Student Profile</h2>
-<p id="welcome">Apni profile banayein aur apni study progress dekhein.</p>
+<!-- LOGIN -->
+<section id="loginSection">
+  <h2>🔐 Student Login</h2>
 
-<input id="username" placeholder="Apna username likho">
-<input id="studentClass" placeholder="Class (jaise Class 11)">
+  <input id="loginUsername" placeholder="Username">
+  <input id="loginPassword" type="password" placeholder="Password">
 
-<button onclick="saveProfile()">Create / Save Profile</button>
+  <button onclick="login()">Login</button>
+  <button onclick="showSignup()">Create Account</button>
 
-<div id="profileInfo" style="display:none;margin-top:18px">
-<div class="avatar">👩‍🎓</div>
-<h2 id="showName"></h2>
-<p id="showClass"></p>
-<p>🆔 Student ID: <b id="studentId"></b></p>
+  <p id="loginMessage"></p>
+</section>
 
-<div class="stats">
-<div class="stat"><b>0</b>Notes</div>
-<div class="stat"><b>0</b>Quiz</div>
-<div class="stat"><b>0</b>Days</div>
+
+<!-- SIGNUP -->
+<section id="signupSection" class="hidden">
+  <h2>📝 Student Signup</h2>
+
+  <input id="name" placeholder="Full Name">
+
+  <input id="username" placeholder="Username">
+
+  <input id="studentId" placeholder="Student ID">
+
+  <select id="className">
+    <option value="">Select Class</option>
+    <option value="9">Class 9</option>
+    <option value="10">Class 10</option>
+    <option value="11">Class 11</option>
+    <option value="12">Class 12</option>
+  </select>
+
+  <input id="email" type="email" placeholder="Email">
+
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="signup()">Create Account</button>
+  <button onclick="showLogin()">Back to Login</button>
+
+  <p id="signupMessage"></p>
+</section>
+
+
+<!-- MAIN WEBSITE -->
+<div id="mainSite" class="hidden">
+
+<section class="profile">
+  <div class="profile-circle">🌸</div>
+  <h2>Student Profile</h2>
+
+  <p id="profileName"></p>
+  <p id="profileUsername"></p>
+  <p id="profileClass"></p>
+  <p id="profileId"></p>
+
+  <button onclick="logout()">Logout</button>
+</section>
+
+
+<!-- HOME CARDS -->
+<div class="card-grid">
+
+  <div class="card" onclick="scrollToSection('notes')">
+    <h3>📚</h3>
+    <p>Notes</p>
+  </div>
+
+  <div class="card" onclick="scrollToSection('quiz')">
+    <h3>📝</h3>
+    <p>MCQ Quiz</p>
+  </div>
+
+  <div class="card" onclick="scrollToSection('study')">
+    <h3>⏰</h3>
+    <p>Study Time</p>
+  </div>
+
+  <div class="card" onclick="scrollToSection('doubt')">
+    <h3>❓</h3>
+    <p>Doubt Box</p>
+  </div>
+
+  <div class="card" onclick="scrollToSection('inclusive')">
+    <h3>🤝</h3>
+    <p>Inclusive Education</p>
+  </div>
+
+  <div class="card" onclick="scrollToSection('about')">
+    <h3>🌸</h3>
+    <p>About</p>
+  </div>
+
 </div>
-</div>
-</div>
 
-<!-- HOME -->
-<div id="home" class="grid">
 
-<div class="card" onclick="show('notes')">
-<div class="icon">📚</div>
-<h3>Notes</h3>
-<p>Subjects aur chapter-wise notes</p>
-</div>
+<!-- NOTES -->
+<section id="notes">
+<h2>📚 Class-wise Notes</h2>
 
-<div class="card" onclick="show('quiz')">
-<div class="icon">📝</div>
-<h3>MCQ Quiz</h3>
-<p>Apni tayari check karein</p>
+<div class="subject">
+<h3>Class 9</h3>
+<p>📖 Hindi Notes</p>
+<p>📘 English Notes</p>
+<p>📕 Science Notes</p>
+<p>📗 Mathematics Notes</p>
+<p>📙 Social Science Notes</p>
 </div>
 
-<div class="card" onclick="show('time')">
-<div class="icon">⏰</div>
-<h3>Study Time</h3>
-<p>Apna timetable banayein</p>
+<div class="subject">
+<h3>Class 10</h3>
+<p>📖 Hindi Notes</p>
+<p>📘 English Notes</p>
+<p>📕 Science Notes</p>
+<p>📗 Mathematics Notes</p>
+<p>📙 Social Science Notes</p>
 </div>
 
-<div class="card" onclick="show('doubt')">
-<div class="icon">💬</div>
-<h3>Doubt Box</h3>
-<p>Apne doubts likhein</p>
+<div class="subject">
+<h3>Class 11</h3>
+<p>📖 Hindi Notes</p>
+<p>📘 English Notes</p>
+<p>📕 Home Science Notes</p>
+<p>📗 History Notes</p>
+<p>📙 Political Science Notes</p>
 </div>
 
-<div class="card" onclick="show('inclusive')">
-<div class="icon">🌈</div>
-<h3>Inclusive Education</h3>
-<p>Har student ke liye learning</p>
+<div class="subject">
+<h3>Class 12</h3>
+<p>📖 Hindi Notes</p>
+<p>📘 English Notes</p>
+<p>📕 Home Science Notes</p>
+<p>📗 History Notes</p>
+<p>📙 Political Science Notes</p>
 </div>
 
-<div class="card" onclick="show('about')">
-<div class="icon">👩‍🎓</div>
-<h3>About</h3>
-<p>App aur creator ke baare mein</p>
-</div>
+</section>
 
-</div>
 
-<!-- SECTIONS -->
-
-<div id="notes" class="section">
-<button class="back" onclick="home()">← Back</button>
-<h2>📚 Notes</h2>
-<p>Yahan chapter-wise notes add kiye ja sakte hain.</p>
-</div>
-
-<div id="quiz" class="section">
-<button class="back" onclick="home()">← Back</button>
+<!-- QUIZ -->
+<section id="quiz">
 <h2>📝 MCQ Quiz</h2>
-<p>Yahan MCQ questions add kiye ja sakte hain.</p>
+
+<div class="note">
+<b>Question:</b>
+<p>Which subject helps us understand the human body?</p>
+
+<button onclick="quizAnswer(false)">History</button>
+<button onclick="quizAnswer(true)">Science</button>
+<button onclick="quizAnswer(false)">Hindi</button>
+<button onclick="quizAnswer(false)">Art</button>
+
+<p id="quizResult"></p>
 </div>
 
-<div id="time" class="section">
-<button class="back" onclick="home()">← Back</button>
+</section>
+
+
+<!-- STUDY TIME -->
+<section id="study">
 <h2>⏰ Study Time</h2>
-<p>Apna daily study timetable yahan bana sakte hain.</p>
+
+<p id="timer">25:00</p>
+
+<button onclick="startTimer()">Start</button>
+<button onclick="stopTimer()">Stop</button>
+<button onclick="resetTimer()">Reset</button>
+
+</section>
+
+
+<!-- DOUBT BOX -->
+<section id="doubt">
+<h2>❓ Doubt Box</h2>
+
+<textarea id="doubtText"
+placeholder="Apna doubt yahan likho..."></textarea>
+
+<button onclick="sendDoubt()">Send Doubt</button>
+
+<p id="doubtMessage"></p>
+</section>
+
+
+<!-- INCLUSIVE EDUCATION -->
+<section id="inclusive">
+<h2>🤝 Inclusive Education</h2>
+
+<p>
+Inclusive Education ka matlab hai ki har student ko,
+uski abilities aur needs ke according, learning ka equal
+opportunity mile.
+</p>
+
+<div class="note">
+💗 Respect everyone  
+<br>
+💗 Help classmates  
+<br>
+💗 Everyone can learn  
+<br>
+💗 No discrimination
 </div>
 
-<div id="doubt" class="section">
-<button class="back" onclick="home()">← Back</button>
-<h2>💬 Doubt Box</h2>
-<textarea style="width:100%;height:120px;padding:12px;border-radius:10px;border:1px solid #ddd"
-placeholder="Apna doubt likho..."></textarea>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+<h2>🌸 About Muskan Study</h2>
+
+<p>
+Muskan Study ek student-friendly study platform hai
+jahan students notes, quizzes aur study resources
+access kar sakte hain.
+</p>
+
+<p style="margin-top:10px;">
+Created & Designed by Muskan 🌸
+</p>
+
+</section>
+
+</div>
 </div>
 
-<div id="inclusive" class="section">
-<button class="back" onclick="home()">← Back</button>
-<h2>🌈 Inclusive Education</h2>
-<p>Har student ke liye learning.</p>
-</div>
-
-<div id="about" class="section">
-<button class="back" onclick="home()">← Back</button>
-<h2>👩‍🎓 About Muskan Study</h2>
-<p>Learn Today, Lead Tomorrow 🌸</p>
-</div>
-
-</main>
 
 <footer>
-Muskan Study 🌸 | Learn Today, Lead Tomorrow
+© 2026 Muskan Study 🌸
 </footer>
+
 
 <script>
 
-function show(id){
- document.getElementById("home").style.display="none";
- document.querySelectorAll(".section").forEach(s=>{
-   s.classList.remove("active");
- });
- document.getElementById(id).classList.add("active");
+let users =
+JSON.parse(localStorage.getItem("muskanUsers")) || [];
+
+let currentUser =
+JSON.parse(localStorage.getItem("currentUser")) || null;
+
+
+/* SHOW LOGIN */
+
+function showLogin(){
+
+  document.getElementById("loginSection")
+  .classList.remove("hidden");
+
+  document.getElementById("signupSection")
+  .classList.add("hidden");
 }
 
-function home(){
- document.querySelectorAll(".section").forEach(s=>{
-   s.classList.remove("active");
- });
- document.getElementById("home").style.display="grid";
+
+/* SHOW SIGNUP */
+
+function showSignup(){
+
+  document.getElementById("loginSection")
+  .classList.add("hidden");
+
+  document.getElementById("signupSection")
+  .classList.remove("hidden");
 }
 
-function saveProfile(){
 
- let name=document.getElementById("username").value.trim();
- let cls=document.getElementById("studentClass").value.trim();
+/* SIGNUP */
 
- if(!name){
-   alert("Pehle username likho 😊");
-   return;
- }
+function signup(){
 
- if(!cls){
-   alert("Apni class likho 😊");
-   return;
- }
+  let name =
+  document.getElementById("name").value.trim();
 
- let id="MSK-"+Math.floor(1000+Math.random()*9000);
+  let username =
+  document.getElementById("username").value.trim();
 
- localStorage.setItem("muskanName",name);
- localStorage.setItem("muskanClass",cls);
- localStorage.setItem("muskanID",id);
-
- document.getElementById("showName").innerText="@"+name;
- document.getElementById("showClass").innerText=cls;
- document.getElementById("studentId").innerText=id;
- document.getElementById("profileInfo").style.display="block";
- document.getElementById("welcome").innerText="Profile successfully created 🌸";
-}
-
-window.onload=function(){
-
- let name=localStorage.getItem("muskanName");
- let cls=localStorage.getItem("muskanClass");
- let id=localStorage.getItem("muskanID");
-
- if(name){
-   document.getElementById("username").value=name;
-   document.getElementById("studentClass").value=cls;
-   document.getElementById("showName").innerText="@"+name;
-   document.getElementById("showClass").innerText=cls;
-   document.getElementById("studentId").innerText=id;
-   document.getElementById("profileInfo").style.display="block";
-   document.getElementById("welcome").innerText="Welcome back 🌸";
- }
-
-}
-
-</script>
-
-</body>
-</html>
+  let studentId =
+ 
