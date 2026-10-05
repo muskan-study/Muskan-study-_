@@ -1,330 +1,1177 @@
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muskan Study 🌷🦋</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  min-height:100vh;
+  color:#5b286d;
+  background:
+    radial-gradient(circle at 8% 15%,#ffffff 0 4%,transparent 18%),
+    radial-gradient(circle at 92% 25%,#ffd9ee 0 3%,transparent 20%),
+    radial-gradient(circle at 30% 90%,#e7ddff 0 5%,transparent 22%),
+    linear-gradient(135deg,#fff1fa,#f1e9ff,#fff8fc);
+  overflow-x:hidden;
+}
+
+/* Decorative flowers */
+.flower{
+  position:fixed;
+  z-index:0;
+  pointer-events:none;
+  opacity:.65;
+  animation:float 6s ease-in-out infinite;
+}
+
+.f1{top:90px;left:12px;font-size:42px;}
+.f2{top:210px;right:15px;font-size:38px;animation-delay:1s;}
+.f3{bottom:120px;left:20px;font-size:35px;animation-delay:2s;}
+.f4{bottom:25px;right:18px;font-size:45px;animation-delay:3s;}
+.f5{top:50%;left:3%;font-size:25px;}
+.f6{top:40%;right:3%;font-size:28px;}
+
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(-4deg);}
+  50%{transform:translateY(-12px) rotate(5deg);}
+}
+
+/* Header */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 25px;
+  background:rgba(255,255,255,.84);
+  backdrop-filter:blur(18px);
+  border-bottom:2px solid #f0d4f2;
+  box-shadow:0 5px 20px rgba(105,55,125,.08);
+}
+
+.logo{
+  font-size:29px;
+  font-weight:900;
+  color:#702b8b;
+}
+
+.tagline{
+  font-size:12px;
+  color:#a3549f;
+  margin-top:3px;
+}
+
+.search{
+  width:min(420px,45vw);
+  padding:12px 18px;
+  border:2px solid #ebd0ef;
+  border-radius:30px;
+  outline:none;
+  background:white;
+  color:#5b286d;
+}
+
+.profile{
+  padding:10px 17px;
+  border-radius:25px;
+  background:#f8dff7;
+  font-weight:bold;
+}
+
+/* Layout */
+.app{
+  position:relative;
+  z-index:1;
+  display:flex;
+  min-height:calc(100vh - 80px);
+}
+
+.sidebar{
+  width:235px;
+  padding:22px 14px;
+  background:rgba(255,247,253,.82);
+  border-right:2px solid #efd8f2;
+}
+
+.nav{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#5b286d;
+  padding:14px 17px;
+  margin:3px 0;
+  border-radius:18px;
+  text-align:left;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.nav:hover,
+.nav.active{
+  background:linear-gradient(90deg,#ffd9ed,#e5d9ff);
+  transform:translateX(4px);
+}
+
+.side-decoration{
+  text-align:center;
+  margin-top:35px;
+  line-height:2;
+  color:#a0529d;
+}
+
+main{
+  flex:1;
+  padding:30px;
+  max-width:1350px;
+}
+
+/* Sections */
+.section{display:none;}
+.section.active{display:block;}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height:300px;
+  padding:38px;
+  border-radius:35px;
+  overflow:hidden;
+  border:2px solid #efd3f2;
+  background:
+    linear-gradient(120deg,rgba(255,224,244,.94),rgba(229,220,255,.92));
+  box-shadow:0 18px 40px rgba(113,58,135,.13);
+}
+
+.hero:before{
+  content:"🌷 🌸 🪻 🌸 🌷";
+  position:absolute;
+  top:15px;
+  left:25px;
+  font-size:27px;
+  letter-spacing:9px;
+  opacity:.75;
+}
+
+.hero:after{
+  content:"🦋";
+  position:absolute;
+  right:13%;
+  top:25%;
+  font-size:90px;
+  opacity:.35;
+  animation:float 5s ease-in-out infinite;
+}
+
+.hero h1{
+  margin-top:30px;
+  font-size:42px;
+  color:#67247f;
+}
+
+.hero p{
+  margin-top:12px;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.hero-badge{
+  display:inline-block;
+  margin-top:20px;
+  padding:11px 19px;
+  border-radius:25px;
+  background:white;
+  font-weight:bold;
+  color:#91438f;
+}
+
+.hero-bottom{
+  position:absolute;
+  right:25px;
+  bottom:18px;
+  font-size:25px;
+}
+
+/* Titles */
+.title{
+  margin:30px 0 16px;
+  color:#67247f;
+  font-size:28px;
+}
+
+/* Classes */
+.classes{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.class-card{
+  position:relative;
+  padding:27px 15px;
+  text-align:center;
+  border:2px solid #ead1ef;
+  border-radius:28px;
+  background:rgba(255,255,255,.9);
+  cursor:pointer;
+  transition:.3s;
+  overflow:hidden;
+}
+
+.class-card:after{
+  content:"🌸";
+  position:absolute;
+  right:8px;
+  bottom:5px;
+  font-size:23px;
+  opacity:.55;
+}
+
+.class-card:hover,
+.class-card.selected{
+  transform:translateY(-8px);
+  border-color:#c58bd4;
+  box-shadow:0 15px 28px rgba(107,52,126,.18);
+}
+
+.class-icon{
+  font-size:50px;
+  margin-bottom:9px;
+}
+
+.class-card h3{
+  font-size:23px;
+  margin-bottom:7px;
+}
+
+/* Subjects */
+.subjects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:19px;
+}
+
+.subject{
+  position:relative;
+  padding:24px;
+  min-height:190px;
+  border-radius:26px;
+  border:2px solid #ead5ef;
+  background:rgba(255,255,255,.9);
+  overflow:hidden;
+  transition:.3s;
+}
+
+.subject:after{
+  content:"🦋 🌷";
+  position:absolute;
+  right:12px;
+  bottom:8px;
+  font-size:27px;
+  opacity:.4;
+}
+
+.subject:hover{
+  transform:translateY(-6px);
+  box-shadow:0 13px 27px rgba(105,53,125,.14);
+}
+
+.subject-icon{
+  font-size:45px;
+}
+
+.subject h3{
+  margin:9px 0 5px;
+  font-size:21px;
+}
+
+.subject p{
+  color:#8b6790;
+  font-size:13px;
+}
+
+.btn{
+  border:0;
+  padding:11px 18px;
+  margin-top:14px;
+  border-radius:25px;
+  background:linear-gradient(90deg,#b95cc7,#805bd2);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* Quick cards */
+.quick{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+}
+
+.quick-card{
+  padding:19px 10px;
+  text-align:center;
+  border:2px solid #ead8ef;
+  border-radius:22px;
+  background:white;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.quick-card:hover{
+  transform:translateY(-5px);
+  background:#fff5fc;
+}
+
+.quick-card .emoji{
+  display:block;
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+/* General cards */
+.card{
+  padding:27px;
+  border-radius:28px;
+  border:2px solid #ead6ef;
+  background:rgba(255,255,255,.91);
+  box-shadow:0 10px 27px rgba(100,48,120,.08);
+  margin-bottom:20px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  margin:8px 0;
+  border:2px solid #ead6ef;
+  border-radius:15px;
+  outline:none;
+  color:#5b286d;
+  background:#fffaff;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+/* Timer */
+.timer{text-align:center;}
+
+.timer-number{
+  font-size:68px;
+  font-weight:900;
+  color:#74358c;
+  margin:18px;
+}
+
+/* Quiz */
+.question{
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.option{
+  width:100%;
+  display:block;
+  padding:14px;
+  margin:8px 0;
+  border:2px solid #ead7ef;
+  border-radius:15px;
+  background:white;
+  text-align:left;
+  cursor:pointer;
+}
+
+.option:hover{
+  background:#fbedfa;
+}
+
+/* Footer */
+footer{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:35px 15px;
+  color:#914d93;
+  line-height:2;
+}
+
+.footer-flowers{
+  font-size:28px;
+}
+
+/* Mobile */
+@media(max-width:950px){
+  .sidebar{width:76px;padding:12px 7px;}
+  .nav{
+    text-align:center;
+    padding:13px 5px;
+    font-size:0;
+  }
+  .nav::first-letter{font-size:22px;}
+  .side-decoration{display:none;}
+
+  .classes{grid-template-columns:repeat(2,1fr);}
+  .subjects{grid-template-columns:repeat(2,1fr);}
+  .quick{grid-template-columns:repeat(2,1fr);}
+  main{padding:18px;}
+}
+
+@media(max-width:600px){
+  header{padding:12px;}
+  .logo{font-size:22px;}
+  .tagline{font-size:9px;}
+  .profile{font-size:11px;padding:8px 10px;}
+  .search{display:none;}
+
+  .hero{
+    padding:22px;
+    min-height:270px;
+  }
+
+  .hero h1{font-size:30px;}
+  .hero p{font-size:15px;}
+
+  .classes,
+  .subjects{
+    grid-template-columns:1fr;
+  }
+
+  .quick{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .title{font-size:24px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating decorations -->
+<div class="flower f1">🌷🦋</div>
+<div class="flower f2">🌸🦋</div>
+<div class="flower f3">🪻🌷</div>
+<div class="flower f4">🌸🦋</div>
+<div class="flower f5">🌼</div>
+<div class="flower f6">🦋</div>
+
+<header>
+
+  <div>
+    <div class="logo">🌸 Muskan Study 🦋</div>
+    <div class="tagline">Dream ✦ Study ✦ Achieve 🌷</div>
+  </div>
+
+  <input
+    class="search"
+    id="search"
+    placeholder="🔍 Search notes, subjects..."
+  >
+
+  <div class="profile">👩🏻 Muskan 💗</div>
+
+</header>
+
+<div class="app">
+
+<aside class="sidebar">
+
+  <button class="nav active" onclick="showSection('home',this)">
+    🏠 Home
+  </button>
+
+  <button class="nav" onclick="showSection('profile',this)">
+    👩🏻 Profile
+  </button>
+
+  <button class="nav" onclick="showSection('notes',this)">
+    📚 Notes
+  </button>
+
+  <button class="nav" onclick="showSection('quiz',this)">
+    🧠 Quiz
+  </button>
+
+  <button class="nav" onclick="showSection('timer',this)">
+    ⏰ Timer
+  </button>
+
+  <button class="nav" onclick="showSection('doubt',this)">
+    💬 Doubt Box
+  </button>
+
+  <button class="nav" onclick="showSection('progress',this)">
+    📊 Progress
+  </button>
+
+  <button class="nav" onclick="showSection('inclusive',this)">
+    ♿ Inclusive
+  </button>
+
+  <div class="side-decoration">
+    🌷 🌸 🦋 🌸 🌷<br>
+    Believe in yourself 💗<br>
+    Keep learning ✨
+  </div>
+
+</aside>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="section active">
+
+  <div class="hero">
+
+    <h1>Hello Muskan! 🌸🦋</h1>
+
+    <p>
+      Welcome to your little study garden 🌷<br>
+      Learn with confidence, grow every day and follow your dreams. 💗
+    </p>
+
+    <span class="hero-badge">
+      🌷 Small Steps ✦ Big Dreams 🌷
+    </span>
+
+    <div class="hero-bottom">
+      🌸 🦋 🌷 🦋 🌸
+    </div>
+
+  </div>
+
+  <h2 class="title">🎓 Choose Your Class 🌸</h2>
+
+  <div class="classes">
+
+    <div class="class-card" onclick="selectClass(9,this)">
+      <div class="class-icon">📖</div>
+      <h3>Class 9</h3>
+      <p>Learn & Explore 🌷</p>
+    </div>
+
+    <div class="class-card" onclick="selectClass(10,this)">
+      <div class="class-icon">📚</div>
+      <h3>Class 10</h3>
+      <p>Grow & Prepare 🦋</p>
+    </div>
+
+    <div class="class-card" onclick="selectClass(11,this)">
+      <div class="class-icon">📘</div>
+      <h3>Class 11</h3>
+      <p>Learn More 🌸</p>
+    </div>
+
+    <div class="class-card" onclick="selectClass(12,this)">
+      <div class="class-icon">🎓</div>
+      <h3>Class 12</h3>
+      <p>Dream Big 🌷</p>
+    </div>
+
+  </div>
+
+  <h2 class="title">📚 Your Subjects 🌷</h2>
+
+  <div class="subjects">
+
+    <div class="subject">
+      <div class="subject-icon">👥</div>
+      <h3>Sociology 🌸</h3>
+      <p>Chapter notes & important questions</p>
+      <button class="btn" onclick="openSubject('Sociology')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <div class="subject-icon">🏛️</div>
+      <h3>History 🌷</h3>
+      <p>Easy chapter-wise revision</p>
+      <button class="btn" onclick="openSubject('History')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <div class="subject-icon">📕</div>
+      <h3>Hindi 🌸</h3>
+      <p>Notes & question answers</p>
+      <button class="btn" onclick="openSubject('Hindi')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <div class="subject-icon">📘</div>
+      <h3>English 🦋</h3>
+      <p>Grammar & chapter notes</p>
+      <button class="btn" onclick="openSubject('English')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <div class="subject-icon">🎨</div>
+      <h3>Painting 🌷</h3>
+      <p>Art topics & exam revision</p>
+      <button class="btn" onclick="openSubject('Painting')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <div class="subject-icon">🏡</div>
+      <h3>Home Science 🌸</h3>
+      <p>Simple notes & revision</p>
+      <button class="btn" onclick="openSubject('Home Science')">
+        View Notes →
+      </button>
+    </div>
+
+  </div>
+
+  <h2 class="title">✨ Quick Study 🌷</h2>
+
+  <div class="quick">
+
+    <div class="quick-card" onclick="showSection('notes')">
+      <span class="emoji">📚</span>
+      Notes
+    </div>
+
+    <div class="quick-card" onclick="showSection('quiz')">
+      <span class="emoji">🧠</span>
+      Quiz
+    </div>
+
+    <div class="quick-card" onclick="showSection('timer')">
+      <span class="emoji">⏰</span>
+      Timer
+    </div>
+
+    <div class="quick-card" onclick="showSection('doubt')">
+      <span class="emoji">💬</span>
+      Doubt
+    </div>
+
+    <div class="quick-card" onclick="showSection('progress')">
+      <span class="emoji">📊</span>
+      Progress
+    </div>
+
+  </div>
+
 </section>
 
-<section class="card hidden" id="aboutSection">
-<h2>🌸 हमारे बारे में 🌷🦋</h2>
-<p>💗 स्वागत है Muskan Study में!</p>
-<p>🌺 यहाँ पढ़ाई करो, नोट्स बनाओ, Quiz खेलो और अपने सपनों को पूरा करने की तैयारी करो।</p>
-<p>🌸🌷🌺🦋🌼🌸🌷🌺🦋</p>
+
+<!-- PROFILE -->
+<section id="profile" class="section">
+
+  <h2 class="title">👩🏻 My Profile 🌸</h2>
+
+  <div class="card">
+
+    <h3>🌷 Student Details 🦋</h3>
+
+    <input id="name" placeholder="🌸 Your name">
+
+    <input id="studentId" placeholder="🪪 Student ID">
+
+    <select id="studentClass">
+      <option value="">🎓 Select Class</option>
+      <option>Class 9</option>
+      <option>Class 10</option>
+      <option>Class 11</option>
+      <option>Class 12</option>
+    </select>
+
+    <button class="btn" onclick="saveProfile()">
+      💗 Save Profile
+    </button>
+
+    <p id="profileMsg"></p>
+
+  </div>
+
+</section>
+
+
+<!-- NOTES -->
+<section id="notes" class="section">
+
+  <h2 class="title">📚 Notes Garden 🌷</h2>
+
+  <div class="card">
+
+    <h3 id="subjectTitle">🌸 Select your subject</h3>
+
+    <select>
+      <option>🎓 Class 9</option>
+      <option>🎓 Class 10</option>
+      <option>🎓 Class 11</option>
+      <option>🎓 Class 12</option>
+    </select>
+
+    <select>
+      <option>Sociology</option>
+      <option>History</option>
+      <option>Hindi</option>
+      <option>English</option>
+      <option>Painting</option>
+      <option>Home Science</option>
+    </select>
+
+    <button class="btn" onclick="alert('🌷 Chapter notes will be connected next! 🦋')">
+      📖 Open Chapter Notes
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="section">
+
+  <h2 class="title">🧠 Quiz Corner 🦋</h2>
+
+  <div class="card">
+
+    <div id="question" class="question">
+      🌸 Ready for your quiz?
+    </div>
+
+    <div id="options"></div>
+
+    <button class="btn" onclick="startQuiz()">
+      ✨ Start Quiz
+    </button>
+
+    <p id="score" style="margin-top:15px;font-weight:bold;"></p>
+
+  </div>
+
+</section>
+
+
+<!-- TIMER -->
+<section id="timer" class="section">
+
+  <h2 class="title">⏰ Study Timer 🌷</h2>
+
+  <div class="card timer">
+
+    <div id="timerDisplay" class="timer-number">
+      25:00
+    </div>
+
+    <button class="btn" onclick="startTimer()">▶ Start</button>
+
+    <button class="btn" onclick="pauseTimer()">⏸ Pause</button>
+
+    <button class="btn" onclick="resetTimer()">↻ Reset</button>
+
+    <p style="margin-top:20px;">
+      🦋 Focus ✦ Study ✦ Rest ✦ Repeat 🌸
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- DOUBT -->
+<section id="doubt" class="section">
+
+  <h2 class="title">💬 Doubt Box 🌸</h2>
+
+  <div class="card">
+
+    <h3>🌷 Ask your study doubt 🦋</h3>
+
+    <input id="doubtSubject" placeholder="📚 Subject">
+
+    <textarea id="doubtText"
+      placeholder="✏️ Write your doubt here..."></textarea>
+
+    <button class="btn" onclick="sendDoubt()">
+      🦋 Send Doubt
+    </button>
+
+    <p id="doubtMsg"></p>
+
+  </div>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section id="progress" class="section">
+
+  <h2 class="title">📊 My Progress 🌷</h2>
+
+  <div class="card">
+
+    <h3>🌸 Your Study Journey</h3>
+
+    <p style="margin-top:15px;">
+      📚 Notes: Coming soon<br><br>
+      🧠 Quiz: Ready to connect<br><br>
+      ⏰ Study Time: Track your sessions<br><br>
+      🌷 Keep going, Muskan! 🦋
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- INCLUSIVE -->
+<section id="inclusive" class="section">
+
+  <h2 class="title">♿ Inclusive Education 🌸</h2>
+
+  <div class="card">
+
+    <h3>🦋 Everyone Can Learn 💗</h3>
+
+    <p style="margin-top:15px;line-height:1.8;">
+      Education should be welcoming and accessible to everyone.
+      🌷 Every student learns differently, and every learner deserves
+      respect, support and encouragement. 🌸
+    </p>
+
+  </div>
+
 </section>
 
 </main>
+</div>
+
 
 <footer>
-🌸 Muskan Study 🌷 Learn • Practice • Grow 🦋🌺
+
+  <div class="footer-flowers">
+    🌷 🌸 🪻 🦋 🌸 🌷 🦋
+  </div>
+
+  <strong>Muskan Study</strong> 💗
+
+  <br>
+
+  Dream ✦ Study ✦ Achieve ✨
+
+  <br>
+
+  Made with 🌸 for learning
+
 </footer>
 
+
 <script>
-// Supabase Project URL और Publishable Key यहाँ डालें।
-const SUPABASE_URL = "https://hukbvxfermaojniuyaaq.supabase.co/rest/v1/";
-const SUPABASE_KEY = ""sb_publishable_6REoUbBQy8sKHYW9Ts9YcQ_hjImOWKG;
 
-let db = null;
-let user = null;
-let timerInterval = null;
-let remaining = 1500;
-let questionIndex = 0;
-let score = 0;
-let answered = false;
+/* Navigation */
+function showSection(id,button){
 
-if (window.supabase &&
-    SUPABASE_URL.startsWith("https://") &&
-    !SUPABASE_URL.includes("YOUR_SUPABASE")) {
-  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-}
+  document.querySelectorAll(".section")
+    .forEach(section => section.classList.remove("active"));
 
-const questions = [
-  {q:"🌸 भारत की राजधानी क्या है?", options:["मुंबई","नई दिल्ली","जयपुर"], answer:1},
-  {q:"🌷 पौधे अपना भोजन किस प्रक्रिया से बनाते हैं?", options:["प्रकाश संश्लेषण","पाचन","वाष्पीकरण"], answer:0},
-  {q:"🌺 पानी का रासायनिक सूत्र क्या है?", options:["CO2","O2","H2O"], answer:2}
-];
+  document.getElementById(id).classList.add("active");
 
-function showSection(id) {
-  document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
-  document.getElementById("appCard").classList.remove("hidden");
-  document.getElementById(id).classList.remove("hidden");
-  if(id==="notesSection") loadNotes();
-  if(id==="doubtSection") loadDoubts();
-  if(id==="profileSection") showProfile();
-}
+  document.querySelectorAll(".nav")
+    .forEach(btn => btn.classList.remove("active"));
 
-function showHome() {
-  document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
-  document.getElementById("appCard").classList.remove("hidden");
-}
-
-function showUser() {
-  if(!user) return;
-  const meta = user.user_metadata || {};
-  document.getElementById("authCard").classList.add("hidden");
-  document.getElementById("appCard").classList.remove("hidden");
-  document.getElementById("welcome").textContent = "🌸 Welcome, " + (meta.name || "Student") + "! 🦋";
-  document.getElementById("profileInfo").textContent = "🌷 कक्षा " + (meta.class_name || "11") + " • पढ़ाई शुरू करो! 🌺";
-  showHome();
-}
-
-async function signUp() {
-  if(!db) return alert("🌸 पहले कोड में Supabase Project URL और Publishable Key भरो।");
-  const name = document.getElementById("signupName").value.trim();
-  const username = document.getElementById("signupUsername").value.trim();
-  const className = document.getElementById("signupClass").value;
-  const email = document.getElementById("signupEmail").value.trim();
-  const password = document.getElementById("signupPassword").value;
-  if(!name || !username || !email || !password) return alert("🌷 सभी जानकारी भरो।");
-  if(password.length < 6) return alert("🌺 Password कम से कम 6 अक्षरों का होना चाहिए।");
-  try {
-    const {data,error} = await db.auth.signUp({
-      email,password,
-      options:{data:{name,username,class_name:className}}
-    });
-    if(error) throw error;
-    if(data.session) {
-      user = data.user;
-      showUser();
-    } else {
-      document.getElementById("authMessage").textContent = "🌸 अकाउंट बनाने का अनुरोध हो गया। Email verification की जरूरत हो तो Email verify करके Login करो।";
-    }
-  } catch(e) {
-    alert("🌺 Signup नहीं हुआ: " + e.message);
+  if(button){
+    button.classList.add("active");
   }
-}
 
-async function logIn() {
-  if(!db) return alert("🌸 पहले Supabase URL और Publishable Key भरो।");
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
-  try {
-    const {data,error} = await db.auth.signInWithPassword({email,password});
-    if(error) throw error;
-    user = data.user;
-    showUser();
-  } catch(e) {
-    alert("🌷 Login नहीं हुआ: " + e.message);
-  }
-}
-
-async function resetPassword() {
-  if(!db) return alert("🌸 पहले Supabase सेट करो।");
-  const email = document.getElementById("loginEmail").value.trim();
-  if(!email) return alert("🌷 पहले Login वाले बॉक्स में Email लिखो।");
-  const {error} = await db.auth.resetPasswordForEmail(email);
-  alert(error ? error.message : "🌺 अगर Email मौजूद है, तो Password reset का संदेश आएगा।");
-}
-
-async function logOut() {
-  if(db) await db.auth.signOut();
-  user = null;
-  document.getElementById("appCard").classList.add("hidden");
-  document.getElementById("authCard").classList.remove("hidden");
-  showHome();
-}
-
-async function saveNote() {
-  if(!user || !db) return alert("🌸 पहले Login और Database सेटअप करो।");
-  const title = document.getElementById("noteTitle").value.trim();
-  const subject = document.getElementById("noteSubject").value;
-  const content = document.getElementById("noteContent").value.trim();
-  if(!title || !content) return alert("🌷 नोट का नाम और सामग्री लिखो।");
-  try {
-    const {error} = await db.from("notes").insert({
-      title,subject,content,class_name:"Class " + (user.user_metadata?.class_name || "11"),
-      user_id:user.id
-    });
-    if(error) throw error;
-    document.getElementById("noteTitle").value = "";
-    document.getElementById("noteContent").value = "";
-    alert("🌺 नोट सेव हो गया!");
-    loadNotes();
-  } catch(e) {
-    alert("🌷 नोट सेव नहीं हुआ: " + e.message);
-  }
-}
-
-async function loadNotes() {
-  const box = document.getElementById("notesList");
-  box.textContent = "🌸 नोट्स लोड हो रहे हैं...";
-  if(!db || !user) { box.textContent = "🌷 Login और Database कनेक्शन जरूरी है।"; return; }
-  try {
-    const {data,error} = await db.from("notes")
-      .select("title,subject,content,created_at")
-      .order("created_at",{ascending:false}).limit(50);
-    if(error) throw error;
-    box.innerHTML = "";
-    if(!data.length) { box.textContent = "🌺 अभी कोई नोट नहीं है।"; return; }
-    data.forEach(n => {
-      const div = document.createElement("div");
-      div.className = "item";
-      const title = document.createElement("h3");
-      title.textContent = "🌸 " + n.title + " • " + n.subject;
-      const content = document.createElement("p");
-      content.textContent = n.content;
-      div.append(title,content);
-      box.append(div);
-    });
-  } catch(e) {
-    box.textContent = "🌷 Notes table या Database policy जाँचें: " + e.message;
-  }
-}
-
-function renderQuestion() {
-  const q = questions[questionIndex];
-  document.getElementById("quizQuestion").textContent = q.q;
-  const box = document.getElementById("quizOptions");
-  box.innerHTML = "";
-  document.getElementById("quizResult").textContent = "";
-  answered = false;
-  q.options.forEach((option,i) => {
-    const button = document.createElement("button");
-    button.textContent = "🌸 " + option;
-    button.onclick = () => checkAnswer(i);
-    box.append(button);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
 }
 
-function checkAnswer(i) {
-  if(answered) return;
-  answered = true;
-  const correct = i === questions[questionIndex].answer;
-  if(correct) score++;
-  document.getElementById("quizResult").textContent =
-    correct ? "🌺 सही जवाब! बहुत बढ़िया! 🦋" :
-    "🌷 सही जवाब: " + questions[questionIndex].options[questions[questionIndex].answer];
+
+/* Class selection */
+function selectClass(classNumber,card){
+
+  document.querySelectorAll(".class-card")
+    .forEach(c => c.classList.remove("selected"));
+
+  card.classList.add("selected");
+
+  localStorage.setItem("selectedClass",classNumber);
+
+  alert(
+    "🌸 Class " + classNumber +
+    " selected! 🦋\nYour study space is ready. 🌷"
+  );
 }
 
-async function nextQuestion() {
-  if(!answered) return alert("🌸 पहले एक जवाब चुनो।");
-  if(questionIndex < questions.length-1) {
-    questionIndex++;
-    renderQuestion();
-  } else {
-    document.getElementById("quizQuestion").textContent = "🌺 Quiz पूरा हुआ!";
-    document.getElementById("quizOptions").innerHTML = "";
-    document.getElementById("quizResult").textContent = "🌸 तुम्हारा स्कोर: " + score + "/" + questions.length + " 🦋";
-    if(db && user) {
-      try {
-        await db.from("quiz_results").insert({user_id:user.id,score,total:questions.length});
-      } catch(e) {
-        console.log("Quiz result save issue:",e.message);
-      }
-    }
-    questionIndex = 0;
-    score = 0;
+
+/* Subject */
+function openSubject(subject){
+
+  document.getElementById("subjectTitle").innerHTML =
+    "📚 " + subject + " Notes 🌸";
+
+  showSection("notes");
+}
+
+
+/* Profile */
+function saveProfile(){
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const id =
+    document.getElementById("studentId").value.trim();
+
+  const studentClass =
+    document.getElementById("studentClass").value;
+
+  localStorage.setItem("studentName",name);
+  localStorage.setItem("studentId",id);
+  localStorage.setItem("studentClass",studentClass);
+
+  document.getElementById("profileMsg").innerHTML =
+    "🌷 Profile saved on this device! 🦋";
+
+}
+
+
+/* Doubt */
+function sendDoubt(){
+
+  const subject =
+    document.getElementById("doubtSubject").value;
+
+  const doubt =
+    document.getElementById("doubtText").value;
+
+  if(!subject || !doubt){
+
+    alert("🌸 Please write your subject and doubt.");
+
+    return;
   }
+
+  document.getElementById("doubtMsg").innerHTML =
+    "💗 Your doubt is saved for the next step! 🦋";
+
 }
 
-function updateTimer() {
-  const m = Math.floor(remaining/60);
-  const s = remaining%60;
-  document.getElementById("timer").textContent =
-    String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+
+/* Timer */
+let seconds = 25 * 60;
+let timerInterval = null;
+
+function updateTimer(){
+
+  const min =
+    Math.floor(seconds / 60);
+
+  const sec =
+    seconds % 60;
+
+  document.getElementById("timerDisplay").textContent =
+    String(min).padStart(2,"0") +
+    ":" +
+    String(sec).padStart(2,"0");
 }
 
-function startTimer() {
+function startTimer(){
+
   if(timerInterval) return;
-  const chosen = Number(document.getElementById("timerMinutes").value);
-  if(remaining <= 0 || remaining === 1500) remaining = chosen*60;
-  document.getElementById("timerMessage").textContent = "🌸 पढ़ाई पर ध्यान दो! 🦋";
-  updateTimer();
-  timerInterval = setInterval(async () => {
-    remaining--;
-    updateTimer();
-    if(remaining <= 0) {
+
+  timerInterval = setInterval(() => {
+
+    if(seconds > 0){
+
+      seconds--;
+
+      updateTimer();
+
+    }else{
+
       clearInterval(timerInterval);
+
       timerInterval = null;
-      document.getElementById("timerMessage").textContent = "🌺 समय पूरा हुआ! थोड़ा आराम करो।";
-      if(db && user) {
-        try {
-          await db.from("study_sessions").insert({user_id:user.id,duration_seconds:chosen*60});
-        } catch(e) {
-          console.log("Study session save issue:",e.message);
-        }
-      }
-      alert("🌸 बहुत बढ़िया! Study time पूरा हुआ। 🌷");
+
+      alert("🌸 Study session complete! Great job, Muskan! 🦋");
+
     }
+
   },1000);
 }
 
-function pauseTimer() {
-  if(timerInterval) clearInterval(timerInterval);
+function pauseTimer(){
+
+  clearInterval(timerInterval);
+
   timerInterval = null;
-  document.getElementById("timerMessage").textContent = "🌷 टाइमर रोक दिया गया।";
 }
 
-function resetTimer() {
-  pauseTimer();
-  remaining = Number(document.getElementById("timerMinutes").value)*60;
+function resetTimer(){
+
+  clearInterval(timerInterval);
+
+  timerInterval = null;
+
+  seconds = 25 * 60;
+
   updateTimer();
-  document.getElementById("timerMessage").textContent = "🌸 फिर से शुरू करने के लिए Start दबाओ।";
 }
 
-async function saveDoubt() {
-  if(!user || !db) return alert("🌸 पहले Login और Database सेटअप करो।");
-  const subject = document.getElementById("doubtSubject").value;
-  const content = document.getElementById("doubtContent").value.trim();
-  if(!content) return alert("🌷 अपना सवाल लिखो।");
-  try {
-    const {error} = await db.from("doubts").insert({user_id:user.id,subject,content});
-    if(error) throw error;
-    document.getElementById("doubtContent").value = "";
-    alert("🌺 सवाल सेव हो गया!");
-    loadDoubts();
-  } catch(e) {
-    alert("🌷 सवाल सेव नहीं हुआ: " + e.message);
+
+/* Simple Quiz */
+const quizQuestions = [
+
+  {
+    q:"🌷 Which nutrient mainly helps in growth and tissue repair?",
+    options:["Protein","Water","Minerals","Carbohydrate"],
+    answer:0
+  },
+
+  {
+    q:"🌸 Which vitamin deficiency can cause rickets?",
+    options:["Vitamin A","Vitamin C","Vitamin D","Vitamin B1"],
+    answer:2
+  },
+
+  {
+    q:"🦋 What does a balanced diet contain?",
+    options:[
+      "Only carbohydrates",
+      "All essential nutrients in suitable amounts",
+      "Only proteins",
+      "Only vitamins"
+    ],
+    answer:1
   }
+
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+
+function startQuiz(){
+
+  quizIndex = 0;
+  quizScore = 0;
+
+  showQuestion();
 }
 
-async function loadDoubts() {
-  const box = document.getElementById("doubtList");
-  if(!db || !user) { box.textContent = "🌸 पहले Login करो।"; return; }
-  box.textContent = "🌷 सवाल लोड हो रहे हैं...";
-  try {
-    const {data,error} = await db.from("doubts")
-      .select("subject,content,created_at")
-      .eq("user_id",user.id).order("created_at",{ascending:false}).limit(30);
-    if(error) throw error;
-    box.innerHTML = "";
-    if(!data.length) { box.textContent = "🌺 अभी कोई सवाल नहीं है।"; return; }
-    data.forEach(d => {
-      const div = document.createElement("div");
-      div.className = "item";
-      const title = document.createElement("h3");
-      title.textContent = "🌸 " + d.subject;
-      const p = document.createElement("p");
-      p.textContent = d.content;
-      div.append(title,p);
-      box.append(div);
-    });
-  } catch(e) {
-    box.textContent = "🌷 Doubts table या Database policy जाँचें: " + e.message;
+function showQuestion(){
+
+  const q = quizQuestions[quizIndex];
+
+  document.getElementById("question").textContent =
+    q.q;
+
+  const box =
+    document.getElementById("options");
+
+  box.innerHTML = "";
+
+  q.options.forEach((option,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent =
+      "🌸 " + option;
+
+    button.onclick = () => checkAnswer(index);
+
+    box.appendChild(button);
+
+  });
+
+}
+
+function checkAnswer(index){
+
+  if(index === quizQuestions[quizIndex].answer){
+    quizScore++;
   }
+
+  quizIndex++;
+
+  if(quizIndex < quizQuestions.length){
+
+    showQuestion();
+
+  }else{
+
+    document.getElementById("question").textContent =
+      "🎉 Quiz Complete!";
+
+    document.getElementById("options").innerHTML = "";
+
+    document.getElementById("score").textContent =
+      "🌷 Your Score: " +
+      quizScore +
+      " / " +
+      quizQuestions.length +
+      " 🦋";
+
+  }
+
 }
 
-function showProfile() {
-  const meta = user?.user_metadata || {};
-  document.getElementById("profileDetails").textContent =
-    "🌸 नाम: " + (meta.name || "—") +
-    "\n🌷 Username: " + (meta.username || "—") +
-    "\n🌺 कक्षा: " + (meta.class_name || "—") +
-    "\n📧 Email: " + (user?.email || "—") +
-    "\n🦋 पढ़ाई करते रहो!";
-}
 
-if(db) {
-  db.auth.getSession().then(({data}) => {
-    if(data.session) {
-      user = data.session.user;
-      showUser();
-    }
-  });
-  db.auth.onAuthStateChange((_event,session) => {
-    if(session) {
-      user = session.user;
-      showUser();
-    }
-  });
-}
+/* Load saved profile */
+window.addEventListener("load",()=>{
 
-updateTimer();
+  const savedName =
+    localStorage.getItem("studentName");
+
+  const savedId =
+    localStorage.getItem("studentId");
+
+  const savedClass =
+    localStorage.getItem("studentClass");
+
+  if(savedName)
+    document.getElementById("name").value = savedName;
+
+  if(savedId)
+    document.getElementById("studentId").value = savedId;
+
+  if(savedClass)
+    document.getElementById("studentClass").value = savedClass;
+
+});
+
 </script>
+
 </body>
-</html>
+    </html>
