@@ -1,497 +1,330 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muskan Study 🌸</title>
+</p>
+</section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<section class="card hidden" id="aboutSection">
+<h2>🌸 हमारे बारे में 🌷🦋</h2>
+<p>💗 स्वागत है Muskan Study में!</p>
+<p>🌺 यहाँ पढ़ाई करो, नोट्स बनाओ, Quiz खेलो और अपने सपनों को पूरा करने की तैयारी करो।</p>
+<p>🌸🌷🌺🦋🌼🌸🌷🌺🦋</p>
+</section>
 
-<style>
-:root{
-  --pink:#f6c8df;
-  --purple:#b9a4e8;
-  --dark:#523b68;
-  --white:#fffaff;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:var(--dark);
-  background:
-    linear-gradient(135deg,rgba(255,248,253,.90),rgba(241,231,255,.88)),
-    url("flowers.jpg") center center / cover fixed;
-  min-height:100vh;
-}
-header{
-  text-align:center;
-  padding:25px 12px 18px;
-  background:rgba(255,255,255,.75);
-  border-bottom:2px solid #f1d5e8;
-}
-header h1{margin:0;font-size:30px}
-header p{margin:8px 0 0}
-main{max-width:950px;margin:auto;padding:15px}
-.card{
-  background:rgba(255,255,255,.91);
-  border:1px solid #ead8f4;
-  border-radius:20px;
-  padding:18px;
-  margin:15px 0;
-  box-shadow:0 5px 18px rgba(126,88,151,.10);
-}
-h2{margin-top:0;color:#8a5ba8}
-input,textarea,select,button{
-  width:100%;padding:12px;margin:6px 0;
-  border-radius:12px;border:1px solid #dec9eb;
-  font-size:15px;font-family:inherit;
-}
-textarea{min-height:85px;resize:vertical}
-button{
-  background:linear-gradient(100deg,#efb8d6,#c9b6f1);
-  color:#4c315f;font-weight:bold;border:0;
-  cursor:pointer;
-}
-button:hover{filter:brightness(.97)}
-button.secondary{background:#f3eafa}
-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-nav button{font-size:13px;padding:10px 5px}
-.small{font-size:13px;color:#816c8f}
-.status{padding:10px;background:#fff0f8;border-radius:10px;margin:8px 0}
-.item{
-  border:1px solid #ead9f2;padding:12px;
-  margin:10px 0;border-radius:12px;background:#fffaff;
-  overflow-wrap:anywhere;
-}
-.item h3{margin:0 0 8px}
-.hidden{display:none!important}
-footer{text-align:center;padding:22px;color:#82688f}
-#timer{font-size:38px;text-align:center;font-weight:bold;padding:10px}
-@media(min-width:650px){
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-}
-</style>
-</head>
-
-<body>
-<header>
-  <h1>🌸 Muskan Study 🦋</h1>
-  <p>📚 पढ़ो, सीखो और अपने सपनों की ओर बढ़ो 💜🌷</p>
-</header>
-
-<main>
-  <section class="card" id="authCard">
-    <h2>🔐 स्वागत है, प्यारे स्टूडेंट!</h2>
-    <div class="two">
-      <div>
-        <h3>🌷 नया अकाउंट बनाओ</h3>
-        <input id="signupName" placeholder="तुम्हारा नाम">
-        <input id="signupUsername" placeholder="Username">
-        <input id="signupClass" placeholder="कक्षा, जैसे 11">
-        <input id="signupEmail" type="email" placeholder="Email">
-        <input id="signupPassword" type="password" placeholder="Password (कम से कम 6 अक्षर)">
-        <button onclick="signUp()">🌸 Sign Up</button>
-      </div>
-      <div>
-        <h3>🦋 पहले से अकाउंट है?</h3>
-        <input id="loginEmail" type="email" placeholder="Email">
-        <input id="loginPassword" type="password" placeholder="Password">
-        <button onclick="logIn()">💗 Login</button>
-        <button class="secondary" onclick="resetPassword()">📩 पासवर्ड भूल गए?</button>
-      </div>
-    </div>
-    <div class="status" id="authMessage">🌼 लॉगिन करने के बाद अपने स्टडी टूल्स इस्तेमाल कर सकती हो।</div>
-  </section>
-
-  <section class="card hidden" id="appCard">
-    <h2 id="welcome">🌸 मेरी स्टडी स्पेस</h2>
-    <p id="profileInfo">🦋 तुम्हारी पढ़ाई की जगह!</p>
-    <button class="secondary" onclick="logOut()">🚪 Logout</button>
-
-    <nav>
-      <button onclick="showSection('notesSection')">📝 Notes</button>
-      <button onclick="showSection('quizSection')">❓ Quiz</button>
-      <button onclick="showSection('timerSection')">⏰ Timer</button>
-      <button onclick="showSection('doubtSection')">💭 Doubt Box</button>
-      <button onclick="showSection('profileSection')">👤 Profile</button>
-      <button onclick="showSection('aboutSection')">🌷 About</button>
-    </nav>
-  </section>
-
-  <section class="card hidden" id="notesSection">
-    <h2>📝 मेरे Notes 🌸</h2>
-    <input id="noteTitle" placeholder="Notes का नाम">
-    <div class="two">
-      <select id="noteClass">
-        <option value="11">कक्षा 11</option>
-        <option value="10">कक्षा 10</option>
-        <option value="12">कक्षा 12</option>
-        <option value="Other">अन्य कक्षा</option>
-      </select>
-      <input id="noteSubject" placeholder="विषय, जैसे Home Science">
-    </div>
-    <textarea id="noteContent" placeholder="यहाँ अपने नोट्स लिखो... 🌷"></textarea>
-    <button onclick="saveNote()">💾 Note Save करो</button>
-    <button class="secondary" onclick="loadNotes()">🔄 Notes Refresh</button>
-    <div id="notesList"></div>
-  </section>
-
-  <section class="card hidden" id="quizSection">
-    <h2>❓ छोटा Study Quiz 🦋</h2>
-    <p id="quizQuestion"></p>
-    <div id="quizOptions"></div>
-    <div id="quizResult" class="status hidden"></div>
-    <button onclick="nextQuestion()">➡️ अगला प्रश्न</button>
-    <p class="small">🌼 यह एक छोटा अभ्यास क्विज़ है। प्रश्नों के उत्तर चुनकर अभ्यास करो।</p>
-  </section>
-
-  <section class="card hidden" id="timerSection">
-    <h2>⏰ Study Timer 🌷</h2>
-    <p>पढ़ाई का समय चुनो और ध्यान से पढ़ो। 💗</p>
-    <select id="timerMinutes">
-      <option value="5">5 मिनट</option>
-      <option value="15">15 मिनट</option>
-      <option value="25" selected>25 मिनट</option>
-      <option value="30">30 मिनट</option>
-      <option value="45">45 मिनट</option>
-      <option value="60">60 मिनट</option>
-    </select>
-    <div id="timer">25:00</div>
-    <button onclick="startTimer()">▶️ शुरू करो</button>
-    <button class="secondary" onclick="pauseTimer()">⏸️ रोकें</button>
-    <button class="secondary" onclick="resetTimer()">🔄 फिर से शुरू</button>
-    <p id="timerMessage" class="status">🌸 तुम कर सकती हो!</p>
-  </section>
-
-  <section class="card hidden" id="doubtSection">
-    <h2>💭 Doubt Box 🦋</h2>
-    <p>पढ़ाई से जुड़ा सवाल यहाँ लिखो।</p>
-    <input id="doubtSubject" placeholder="किस विषय का सवाल है?">
-    <textarea id="doubtContent" placeholder="अपना सवाल लिखो..."></textarea>
-    <button onclick="saveDoubt()">📨 सवाल Save करो</button>
-    <div id="doubtMessage" class="status hidden"></div>
-    <p class="small">🌷 सवाल सेव होगा; इसका जवाब अपने आप नहीं आएगा।</p>
-  </section>
-
-  <section class="card hidden" id="profileSection">
-    <h2>👤 मेरी Profile 🌸</h2>
-    <p id="profileDetails">अपनी जानकारी देखने के लिए लॉगिन करो।</p>
-  </section>
-
-  <section class="card hidden" id="aboutSection">
-    <h2>🌷 Muskan Study के बारे में 🦋</h2>
-    <p>💗 यह पढ़ाई, नोट्स बनाने, अभ्यास करने और समय सँभालने के लिए एक स्टडी वेबसाइट है।</p>
-    <p>📚 पढ़ाई के लिए छोटे लक्ष्य बनाओ, नियमित अभ्यास करो और अपनी प्रगति पर ध्यान दो।</p>
-    <p>🌸 मेहनत करते रहो — हर दिन कुछ नया सीखो!</p>
-  </section>
 </main>
 
-<footer>🌸 Made with care for learners 💗 🦋 🌷</footer>
+<footer>
+🌸 Muskan Study 🌷 Learn • Practice • Grow 🦋🌺
+</footer>
 
 <script>
-/* Supabase Dashboard से अपनी Project URL और Publishable Key भरो */
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+// Supabase Project URL और Publishable Key यहाँ डालें।
+const SUPABASE_URL = "https://hukbvxfermaojniuyaaq.supabase.co/rest/v1/";
+const SUPABASE_KEY = ""sb_publishable_6REoUbBQy8sKHYW9Ts9YcQ_hjImOWKG;
 
 let db = null;
+let user = null;
+let timerInterval = null;
+let remaining = 1500;
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
 if (window.supabase &&
-    !SUPABASE_URL.includes("YOUR_") &&
-    !SUPABASE_KEY.includes("YOUR_")) {
+    SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("YOUR_SUPABASE")) {
   db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 }
 
-let currentUser = null;
-let timerSeconds = 25 * 60;
-let timerInterval = null;
-let timerStartedAt = null;
-let timerRemainingAtStart = null;
+const questions = [
+  {q:"🌸 भारत की राजधानी क्या है?", options:["मुंबई","नई दिल्ली","जयपुर"], answer:1},
+  {q:"🌷 पौधे अपना भोजन किस प्रक्रिया से बनाते हैं?", options:["प्रकाश संश्लेषण","पाचन","वाष्पीकरण"], answer:0},
+  {q:"🌺 पानी का रासायनिक सूत्र क्या है?", options:["CO2","O2","H2O"], answer:2}
+];
 
-function message(id, text) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = text;
-}
-function readyDatabase() {
-  if (!db) {
-    alert("🌷 पहले Supabase Project URL और Publishable Key भरो।");
-    return false;
-  }
-  return true;
-}
 function showSection(id) {
-  document.querySelectorAll("#notesSection,#quizSection,#timerSection,#doubtSection,#profileSection,#aboutSection")
-    .forEach(el => el.classList.add("hidden"));
+  document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
+  document.getElementById("appCard").classList.remove("hidden");
   document.getElementById(id).classList.remove("hidden");
-  if (id === "notesSection") loadNotes();
+  if(id==="notesSection") loadNotes();
+  if(id==="doubtSection") loadDoubts();
+  if(id==="profileSection") showProfile();
 }
-function setLoggedIn(user) {
-  currentUser = user || null;
-  document.getElementById("authCard").classList.toggle("hidden", !!user);
-  document.getElementById("appCard").classList.toggle("hidden", !user);
-  if (user) {
-    const meta = user.user_metadata || {};
-    const name = meta.name || user.email || "Student";
-    message("welcome", "🌸 Welcome, " + name + " 🦋");
-    message("profileInfo", "📚 पढ़ाई का सफर जारी रखो!");
-    message("profileDetails",
-      "नाम: " + (meta.name || "—") +
-      "\nUsername: " + (meta.username || "—") +
-      "\nकक्षा: " + (meta.class_name || "—") +
-      "\nEmail: " + (user.email || "—"));
-  }
+
+function showHome() {
+  document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
+  document.getElementById("appCard").classList.remove("hidden");
 }
+
+function showUser() {
+  if(!user) return;
+  const meta = user.user_metadata || {};
+  document.getElementById("authCard").classList.add("hidden");
+  document.getElementById("appCard").classList.remove("hidden");
+  document.getElementById("welcome").textContent = "🌸 Welcome, " + (meta.name || "Student") + "! 🦋";
+  document.getElementById("profileInfo").textContent = "🌷 कक्षा " + (meta.class_name || "11") + " • पढ़ाई शुरू करो! 🌺";
+  showHome();
+}
+
 async function signUp() {
-  if (!readyDatabase()) return;
+  if(!db) return alert("🌸 पहले कोड में Supabase Project URL और Publishable Key भरो।");
   const name = document.getElementById("signupName").value.trim();
   const username = document.getElementById("signupUsername").value.trim();
-  const className = document.getElementById("signupClass").value.trim();
+  const className = document.getElementById("signupClass").value;
   const email = document.getElementById("signupEmail").value.trim();
   const password = document.getElementById("signupPassword").value;
-  if (!name || !username || !className || !email || !password) {
-    message("authMessage", "🌼 सभी जानकारी भरो।");
-    return;
-  }
-  if (password.length < 6) {
-    message("authMessage", "🔐 Password कम से कम 6 अक्षर का होना चाहिए।");
-    return;
-  }
-  message("authMessage", "🌷 अकाउंट बनाया जा रहा है...");
-  const { data, error } = await db.auth.signUp({
-    email, password,
-    options: { data: { name, username, class_name: className } }
-  });
-  if (error) {
-    message("authMessage", "❌ " + error.message);
-    return;
-  }
-  if (data.session) {
-    setLoggedIn(data.user);
-    message("authMessage", "🌸 अकाउंट बन गया!");
-  } else {
-    message("authMessage", "📩 अकाउंट के लिए ईमेल में confirmation link देखो। पुष्टि के बाद Login करो।");
+  if(!name || !username || !email || !password) return alert("🌷 सभी जानकारी भरो।");
+  if(password.length < 6) return alert("🌺 Password कम से कम 6 अक्षरों का होना चाहिए।");
+  try {
+    const {data,error} = await db.auth.signUp({
+      email,password,
+      options:{data:{name,username,class_name:className}}
+    });
+    if(error) throw error;
+    if(data.session) {
+      user = data.user;
+      showUser();
+    } else {
+      document.getElementById("authMessage").textContent = "🌸 अकाउंट बनाने का अनुरोध हो गया। Email verification की जरूरत हो तो Email verify करके Login करो।";
+    }
+  } catch(e) {
+    alert("🌺 Signup नहीं हुआ: " + e.message);
   }
 }
+
 async function logIn() {
-  if (!readyDatabase()) return;
+  if(!db) return alert("🌸 पहले Supabase URL और Publishable Key भरो।");
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value;
-  const { data, error } = await db.auth.signInWithPassword({ email, password });
-  if (error) {
-    message("authMessage", "❌ " + error.message);
-    return;
+  try {
+    const {data,error} = await db.auth.signInWithPassword({email,password});
+    if(error) throw error;
+    user = data.user;
+    showUser();
+  } catch(e) {
+    alert("🌷 Login नहीं हुआ: " + e.message);
   }
-  setLoggedIn(data.user);
-  message("authMessage", "💗 Login सफल हुआ!");
-  showSection("notesSection");
 }
-async function logOut() {
-  if (db) await db.auth.signOut();
-  setLoggedIn(null);
-  message("authMessage", "🌷 तुम Logout हो गई हो।");
-}
+
 async function resetPassword() {
-  if (!readyDatabase()) return;
+  if(!db) return alert("🌸 पहले Supabase सेट करो।");
   const email = document.getElementById("loginEmail").value.trim();
-  if (!email) {
-    message("authMessage", "📩 पहले Login वाले बॉक्स में अपना Email भरो।");
-    return;
-  }
-  const { error } = await db.auth.resetPasswordForEmail(email);
-  message("authMessage", error ? "❌ " + error.message : "📩 अगर अकाउंट मौजूद है, तो पासवर्ड रीसेट करने का ईमेल भेजा गया है।");
+  if(!email) return alert("🌷 पहले Login वाले बॉक्स में Email लिखो।");
+  const {error} = await db.auth.resetPasswordForEmail(email);
+  alert(error ? error.message : "🌺 अगर Email मौजूद है, तो Password reset का संदेश आएगा।");
+}
+
+async function logOut() {
+  if(db) await db.auth.signOut();
+  user = null;
+  document.getElementById("appCard").classList.add("hidden");
+  document.getElementById("authCard").classList.remove("hidden");
+  showHome();
 }
 
 async function saveNote() {
-  if (!readyDatabase() || !currentUser) return;
+  if(!user || !db) return alert("🌸 पहले Login और Database सेटअप करो।");
   const title = document.getElementById("noteTitle").value.trim();
+  const subject = document.getElementById("noteSubject").value;
   const content = document.getElementById("noteContent").value.trim();
-  const subject = document.getElementById("noteSubject").value.trim();
-  const class_name = document.getElementById("noteClass").value;
-  if (!title || !content) {
-    alert("🌸 Notes का नाम और content लिखो।");
-    return;
-  }
-  const { error } = await db.from("notes").insert({
-    user_id: currentUser.id, title, content, subject, class_name
-  });
-  if (error) {
-    alert("❌ Note सेव नहीं हुआ: " + error.message);
-    return;
-  }
-  document.getElementById("noteTitle").value = "";
-  document.getElementById("noteContent").value = "";
-  document.getElementById("noteSubject").value = "";
-  alert("💗 तुम्हारा Note सेव हो गया!");
-  loadNotes();
-}
-async function loadNotes() {
-  if (!db || !currentUser) return;
-  const list = document.getElementById("notesList");
-  list.textContent = "🌷 Notes लोड हो रहे हैं...";
-  const { data, error } = await db.from("notes")
-    .select("id,title,content,subject,class_name,created_at")
-    .order("created_at", { ascending: false });
-  if (error) {
-    list.textContent = "❌ Notes लोड नहीं हुए: " + error.message;
-    return;
-  }
-  list.innerHTML = "";
-  if (!data || data.length === 0) {
-    list.textContent = "🌼 अभी कोई Note नहीं है। अपना पहला Note बनाओ!";
-    return;
-  }
-  data.forEach(note => {
-    const item = document.createElement("div");
-    item.className = "item";
-    const title = document.createElement("h3");
-    title.textContent = "📝 " + note.title;
-    const details = document.createElement("p");
-    details.textContent = "📚 कक्षा " + (note.class_name || "—") +
-      " • " + (note.subject || "विषय नहीं दिया");
-    const content = document.createElement("p");
-    content.style.whiteSpace = "pre-wrap";
-    content.textContent = note.content;
-    const del = document.createElement("button");
-    del.className = "secondary";
-    del.textContent = "🗑️ यह Note हटाओ";
-    del.onclick = () => deleteNote(note.id);
-    item.append(title, details, content, del);
-    list.appendChild(item);
-  });
-}
-async function deleteNote(id) {
-  if (!db || !currentUser || !confirm("🌷 यह Note हटाना है?")) return;
-  const { error } = await db.from("notes").delete().eq("id", id);
-  if (error) alert("❌ Note नहीं हटा: " + error.message);
-  else loadNotes();
-}
-async function saveDoubt() {
-  if (!readyDatabase() || !currentUser) return;
-  const subject = document.getElementById("doubtSubject").value.trim();
-  const content = document.getElementById("doubtContent").value.trim();
-  if (!content) {
-    message("doubtMessage", "🌸 पहले अपना सवाल लिखो।");
-    document.getElementById("doubtMessage").classList.remove("hidden");
-    return;
-  }
-  const { error } = await db.from("doubts").insert({
-    user_id: currentUser.id, subject, content
-  });
-  document.getElementById("doubtMessage").classList.remove("hidden");
-  if (error) {
-    message("doubtMessage", "❌ सवाल सेव नहीं हुआ: " + error.message);
-  } else {
-    message("doubtMessage", "💗 तुम्हारा सवाल सेव हो गया!");
-    document.getElementById("doubtSubject").value = "";
-    document.getElementById("doubtContent").value = "";
+  if(!title || !content) return alert("🌷 नोट का नाम और सामग्री लिखो।");
+  try {
+    const {error} = await db.from("notes").insert({
+      title,subject,content,class_name:"Class " + (user.user_metadata?.class_name || "11"),
+      user_id:user.id
+    });
+    if(error) throw error;
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteContent").value = "";
+    alert("🌺 नोट सेव हो गया!");
+    loadNotes();
+  } catch(e) {
+    alert("🌷 नोट सेव नहीं हुआ: " + e.message);
   }
 }
 
-/* Quiz: अभी अभ्यास के लिए sample questions हैं */
-const questions = [
-  {q:"🌸 पौधों को भोजन बनाने के लिए मुख्य रूप से क्या चाहिए?",a:["सूर्य का प्रकाश","प्लास्टिक","रेत ही रेत","केवल अंधेरा"],correct:0},
-  {q:"📚 पानी का रासायनिक सूत्र क्या है?",a:["CO2","H2O","O2","NaCl"],correct:1},
-  {q:"🦋 पढ़ाई के दौरान छोटे ब्रेक लेने का एक लाभ क्या है?",a:["ध्यान सँभालने में मदद","किताबें गायब होना","समय रुकना","कुछ नहीं सीखना"],correct:0},
-  {q:"🌷 भारत की राजधानी कौन-सी है?",a:["मुंबई","जयपुर","नई दिल्ली","चेन्नई"],correct:2}
-];
-let questionIndex = 0;
-let answered = false;
-let quizScore = 0;
+async function loadNotes() {
+  const box = document.getElementById("notesList");
+  box.textContent = "🌸 नोट्स लोड हो रहे हैं...";
+  if(!db || !user) { box.textContent = "🌷 Login और Database कनेक्शन जरूरी है।"; return; }
+  try {
+    const {data,error} = await db.from("notes")
+      .select("title,subject,content,created_at")
+      .order("created_at",{ascending:false}).limit(50);
+    if(error) throw error;
+    box.innerHTML = "";
+    if(!data.length) { box.textContent = "🌺 अभी कोई नोट नहीं है।"; return; }
+    data.forEach(n => {
+      const div = document.createElement("div");
+      div.className = "item";
+      const title = document.createElement("h3");
+      title.textContent = "🌸 " + n.title + " • " + n.subject;
+      const content = document.createElement("p");
+      content.textContent = n.content;
+      div.append(title,content);
+      box.append(div);
+    });
+  } catch(e) {
+    box.textContent = "🌷 Notes table या Database policy जाँचें: " + e.message;
+  }
+}
+
 function renderQuestion() {
   const q = questions[questionIndex];
-  message("quizQuestion", (questionIndex + 1) + "/" + questions.length + " — " + q.q);
-  const options = document.getElementById("quizOptions");
-  options.innerHTML = "";
-  message("quizResult", "");
-  document.getElementById("quizResult").classList.add("hidden");
+  document.getElementById("quizQuestion").textContent = q.q;
+  const box = document.getElementById("quizOptions");
+  box.innerHTML = "";
+  document.getElementById("quizResult").textContent = "";
   answered = false;
-  q.a.forEach((answer, i) => {
-    const btn = document.createElement("button");
-    btn.className = "secondary";
-    btn.textContent = answer;
-    btn.onclick = () => {
-      if (answered) return;
-      answered = true;
-      const correct = i === q.correct;
-      if (correct) quizScore++;
-      message("quizResult", correct ? "🎉 सही जवाब! शाबाश!" : "🌷 सही जवाब: " + q.a[q.correct]);
-      document.getElementById("quizResult").classList.remove("hidden");
-    };
-    options.appendChild(btn);
+  q.options.forEach((option,i) => {
+    const button = document.createElement("button");
+    button.textContent = "🌸 " + option;
+    button.onclick = () => checkAnswer(i);
+    box.append(button);
   });
 }
-function nextQuestion() {
-  if (!answered) {
-    alert("🌸 पहले एक उत्तर चुनो!");
-    return;
-  }
-  if (questionIndex < questions.length - 1) {
+
+function checkAnswer(i) {
+  if(answered) return;
+  answered = true;
+  const correct = i === questions[questionIndex].answer;
+  if(correct) score++;
+  document.getElementById("quizResult").textContent =
+    correct ? "🌺 सही जवाब! बहुत बढ़िया! 🦋" :
+    "🌷 सही जवाब: " + questions[questionIndex].options[questions[questionIndex].answer];
+}
+
+async function nextQuestion() {
+  if(!answered) return alert("🌸 पहले एक जवाब चुनो।");
+  if(questionIndex < questions.length-1) {
     questionIndex++;
     renderQuestion();
   } else {
-    message("quizQuestion", "💗 Quiz पूरा हुआ!");
+    document.getElementById("quizQuestion").textContent = "🌺 Quiz पूरा हुआ!";
     document.getElementById("quizOptions").innerHTML = "";
-    message("quizResult", "🌷 तुम्हारा स्कोर: " + quizScore + "/" + questions.length + ". फिर से अभ्यास करने के लिए पेज Refresh करो।");
-    document.getElementById("quizResult").classList.remove("hidden");
+    document.getElementById("quizResult").textContent = "🌸 तुम्हारा स्कोर: " + score + "/" + questions.length + " 🦋";
+    if(db && user) {
+      try {
+        await db.from("quiz_results").insert({user_id:user.id,score,total:questions.length});
+      } catch(e) {
+        console.log("Quiz result save issue:",e.message);
+      }
+    }
+    questionIndex = 0;
+    score = 0;
   }
 }
 
-/* Study Timer */
-function displayTimer() {
-  const min = Math.floor(timerSeconds / 60).toString().padStart(2, "0");
-  const sec = (timerSeconds % 60).toString().padStart(2, "0");
-  message("timer", min + ":" + sec);
+function updateTimer() {
+  const m = Math.floor(remaining/60);
+  const s = remaining%60;
+  document.getElementById("timer").textContent =
+    String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
 }
+
 function startTimer() {
-  if (timerInterval) return;
-  if (timerSeconds <= 0) resetTimer();
-  timerStartedAt = Date.now();
-  timerRemainingAtStart = timerSeconds;
-  timerInterval = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - timerStartedAt) / 1000);
-    timerSeconds = Math.max(0, timerRemainingAtStart - elapsed);
-    displayTimer();
-    if (timerSeconds <= 0) {
+  if(timerInterval) return;
+  const chosen = Number(document.getElementById("timerMinutes").value);
+  if(remaining <= 0 || remaining === 1500) remaining = chosen*60;
+  document.getElementById("timerMessage").textContent = "🌸 पढ़ाई पर ध्यान दो! 🦋";
+  updateTimer();
+  timerInterval = setInterval(async () => {
+    remaining--;
+    updateTimer();
+    if(remaining <= 0) {
       clearInterval(timerInterval);
       timerInterval = null;
-      message("timerMessage", "🎉 समय पूरा हुआ! थोड़ा आराम कर लो। 🌸");
-      if ("vibrate" in navigator) navigator.vibrate(300);
+      document.getElementById("timerMessage").textContent = "🌺 समय पूरा हुआ! थोड़ा आराम करो।";
+      if(db && user) {
+        try {
+          await db.from("study_sessions").insert({user_id:user.id,duration_seconds:chosen*60});
+        } catch(e) {
+          console.log("Study session save issue:",e.message);
+        }
+      }
+      alert("🌸 बहुत बढ़िया! Study time पूरा हुआ। 🌷");
     }
-  }, 250);
-  message("timerMessage", "💗 ध्यान से पढ़ो, तुम अच्छा कर रही हो!");
+  },1000);
 }
-function pauseTimer() {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-  message("timerMessage", "⏸️ Timer रुका हुआ है। जब तैयार हो, फिर शुरू करो।");
-}
-function resetTimer() {
-  if (timerInterval) clearInterval(timerInterval);
-  timerInterval = null;
-  timerSeconds = Number(document.getElementById("timerMinutes").value) * 60;
-  displayTimer();
-  message("timerMessage", "🌸 नया स्टडी सेशन शुरू करने के लिए तैयार!");
-}
-document.getElementById("timerMinutes").addEventListener("change", resetTimer);
 
-async function initialize() {
-  renderQuestion();
-  displayTimer();
-  if (!db) {
-    message("authMessage", "🌷 वेबसाइट दिखेगी, लेकिन Login/Database के लिए Supabase URL और Publishable Key डालनी होगी।");
-    return;
+function pauseTimer() {
+  if(timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+  document.getElementById("timerMessage").textContent = "🌷 टाइमर रोक दिया गया।";
+}
+
+function resetTimer() {
+  pauseTimer();
+  remaining = Number(document.getElementById("timerMinutes").value)*60;
+  updateTimer();
+  document.getElementById("timerMessage").textContent = "🌸 फिर से शुरू करने के लिए Start दबाओ।";
+}
+
+async function saveDoubt() {
+  if(!user || !db) return alert("🌸 पहले Login और Database सेटअप करो।");
+  const subject = document.getElementById("doubtSubject").value;
+  const content = document.getElementById("doubtContent").value.trim();
+  if(!content) return alert("🌷 अपना सवाल लिखो।");
+  try {
+    const {error} = await db.from("doubts").insert({user_id:user.id,subject,content});
+    if(error) throw error;
+    document.getElementById("doubtContent").value = "";
+    alert("🌺 सवाल सेव हो गया!");
+    loadDoubts();
+  } catch(e) {
+    alert("🌷 सवाल सेव नहीं हुआ: " + e.message);
   }
-  const { data } = await db.auth.getSession();
-  if (data.session) {
-    setLoggedIn(data.session.user);
-    showSection("notesSection");
+}
+
+async function loadDoubts() {
+  const box = document.getElementById("doubtList");
+  if(!db || !user) { box.textContent = "🌸 पहले Login करो।"; return; }
+  box.textContent = "🌷 सवाल लोड हो रहे हैं...";
+  try {
+    const {data,error} = await db.from("doubts")
+      .select("subject,content,created_at")
+      .eq("user_id",user.id).order("created_at",{ascending:false}).limit(30);
+    if(error) throw error;
+    box.innerHTML = "";
+    if(!data.length) { box.textContent = "🌺 अभी कोई सवाल नहीं है।"; return; }
+    data.forEach(d => {
+      const div = document.createElement("div");
+      div.className = "item";
+      const title = document.createElement("h3");
+      title.textContent = "🌸 " + d.subject;
+      const p = document.createElement("p");
+      p.textContent = d.content;
+      div.append(title,p);
+      box.append(div);
+    });
+  } catch(e) {
+    box.textContent = "🌷 Doubts table या Database policy जाँचें: " + e.message;
   }
-  db.auth.onAuthStateChange((_event, session) => {
-    setLoggedIn(session ? session.user : null);
+}
+
+function showProfile() {
+  const meta = user?.user_metadata || {};
+  document.getElementById("profileDetails").textContent =
+    "🌸 नाम: " + (meta.name || "—") +
+    "\n🌷 Username: " + (meta.username || "—") +
+    "\n🌺 कक्षा: " + (meta.class_name || "—") +
+    "\n📧 Email: " + (user?.email || "—") +
+    "\n🦋 पढ़ाई करते रहो!";
+}
+
+if(db) {
+  db.auth.getSession().then(({data}) => {
+    if(data.session) {
+      user = data.session.user;
+      showUser();
+    }
+  });
+  db.auth.onAuthStateChange((_event,session) => {
+    if(session) {
+      user = session.user;
+      showUser();
+    }
   });
 }
-initialize();
+
+updateTimer();
 </script>
 </body>
 </html>
