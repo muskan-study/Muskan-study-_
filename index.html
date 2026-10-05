@@ -519,7 +519,9 @@ const supabaseClient = window.supabase.createClient(
   <button class="nav" onclick="showSection('notes',this)">
     📚 Notes
   </button>
-
+<button class="nav" onclick="showSection('chat',this)">
+  💬 Chat
+</button>
   <button class="nav" onclick="showSection('quiz',this)">
     🧠 Quiz
   </button>
@@ -694,7 +696,107 @@ const supabaseClient = window.supabase.createClient(
   </div>
 
 </section>
+<!-- NOTES -->
+<section id="notes" class="section">
 
+<h2 class="title">📚 My Notes 🌸</h2>
+
+<div class="card">
+  <h3>🌷 Choose Your Class</h3>
+
+  <div class="classes">
+
+    <div class="class-card" onclick="showNoteClass(9)">
+      <div class="class-icon">🌸</div>
+      <h3>Class 9</h3>
+      <p>Notes & Chapters 📚</p>
+    </div>
+
+    <div class="class-card" onclick="showNoteClass(10)">
+      <div class="class-icon">🦋</div>
+      <h3>Class 10</h3>
+      <p>Notes & Chapters 📖</p>
+    </div>
+
+    <div class="class-card" onclick="showNoteClass(11)">
+      <div class="class-icon">🌷</div>
+      <h3>Class 11</h3>
+      <p>Notes & Chapters ✨</p>
+    </div>
+
+    <div class="class-card" onclick="showNoteClass(12)">
+      <div class="class-icon">🌺</div>
+      <h3>Class 12</h3>
+      <p>Notes & Chapters 💗</p>
+    </div>
+
+  </div>
+</div>
+
+<div id="noteClassBox" class="card" style="display:none;">
+  <h3 id="noteClassTitle">📚 Select a Subject</h3>
+
+  <div class="subjects">
+
+    <div class="subject">
+      <h3>🌸 Sociology</h3>
+      <p>Chapter-wise notes</p>
+      <button class="btn" onclick="openNote('Sociology')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <h3>🏛️ History</h3>
+      <p>Important chapters & questions</p>
+      <button class="btn" onclick="openNote('History')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <h3>📕 Hindi</h3>
+      <p>Notes & question answers</p>
+      <button class="btn" onclick="openNote('Hindi')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <h3>📘 English</h3>
+      <p>Grammar & chapter notes</p>
+      <button class="btn" onclick="openNote('English')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <h3>🎨 Painting</h3>
+      <p>Art topics & revision</p>
+      <button class="btn" onclick="openNote('Painting')">
+        View Notes →
+      </button>
+    </div>
+
+    <div class="subject">
+      <h3>🌷 Home Science</h3>
+      <p>Simple notes & revision</p>
+      <button class="btn" onclick="openNote('Home Science')">
+        View Notes →
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div id="noteContent" class="card" style="display:none;">
+  <h3 id="noteSubjectTitle">📖 Notes</h3>
+  <p id="noteText">
+    🌸 Notes will appear here.
+  </p>
+</div>
+
+</section>
 
 <!-- PROFILE -->
 <section id="profile" class="section">
