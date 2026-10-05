@@ -799,35 +799,56 @@ const supabaseClient = window.supabase.createClient(
 </section>
 
 <!-- PROFILE -->
+<!-- PROFILE / LOGIN -->
 <section id="profile" class="section">
 
-  <h2 class="title">👩🏻 My Profile 🌸</h2>
+<h2 class="title">🌸 My Profile 🦋</h2>
 
-  <div class="card">
+<div class="card">
 
-    <h3>🌷 Student Details 🦋</h3>
+<h3>👩‍🎓 Student Details</h3>
 
-    <input id="name" placeholder="🌸 Your name">
+<input id="name"
+placeholder="🌷 Your Name"
+type="text">
 
-    <input id="studentId" placeholder="🪪 Student ID">
-<input id="username" placeholder="🦋 Choose your username">
-    <select id="studentClass">
-      <option value="">🎓 Select Class</option>
-      <option>Class 9</option>
-      <option>Class 10</option>
-      <option>Class 11</option>
-      <option>Class 12</option>
-    </select>
+<input id="studentId"
+placeholder="🆔 Student ID"
+type="text">
 
-    <button class="btn" onclick="saveProfile()">
-      💗 Save Profile
-    </button>
+<input id="username"
+placeholder="💗 Choose Username"
+type="text">
 
-    <p id="profileMsg"></p>
+<input id="password"
+placeholder="🔐 Password"
+type="password">
 
-  </div>
+<select id="studentClass">
+<option value="">🎓 Select Class</option>
+<option>Class 9</option>
+<option>Class 10</option>
+<option>Class 11</option>
+<option>Class 12</option>
+</select>
+
+<br><br>
+
+<button class="btn" onclick="saveProfile()">
+💾 Create / Save Account
+</button>
+
+<button class="btn" onclick="loginStudent()">
+🔐 Login
+</button>
+
+<p id="profileMsg"></p>
+
+</div>
 
 </section>
+
+
 
 
 <!-- NOTES -->
