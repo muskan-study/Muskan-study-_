@@ -855,8 +855,8 @@ const supabaseClient = window.supabase.createClient(
       <option>Home Science</option>
     </select>
 
-    <button class="btn" onclick="alert('🌷 Chapter notes will be connected next! 🦋')">
-      📖 Open Chapter Notes
+    <button class="btn" onclick="openChapterNotes()">
+📖 Open Chapter Notes
     </button>
 
   </div>
@@ -1282,7 +1282,125 @@ window.addEventListener("load",()=>{
     document.getElementById("studentClass").value = savedClass;
 
 });
+<script>
+function openChapterNotes(){
 
+  const selects = document.querySelectorAll('#notes select');
+
+  const selectedClass = selects[0].value;
+  const selectedSubject = selects[1].value;
+
+
+    const chapters = {
+
+  "Sociology": [
+    "Chapter 1 - Introducing Sociology",
+    "Chapter 2 - Society and Socialization",
+    "Important Questions & Answers"
+  ],
+
+  "History": [
+    "Chapter 1 - Important Historical Events",
+    "Chapter 2 - Early Societies",
+    "Important Questions & Answers"
+  ],
+
+  "Hindi": [
+    "Chapter 1 - पाठ के प्रश्न-उत्तर",
+    "Chapter 2 - पाठ का सार",
+    "Important Questions & Answers"
+  ],
+
+  "English": [
+    "Chapter 1 - Literature",
+    "Chapter 2 - Grammar",
+    "Important Questions & Answers"
+  ],
+
+  "Painting": [
+    "Chapter 1 - Prehistoric Rock Painting",
+    "Chapter 2 - Indus Valley Art",
+    "Important Questions & Answers"
+  ],
+
+  "Home Science": [
+    "Chapter 1 - Introduction",
+    "Chapter 2 - Human Development",
+    "Chapter 3 - Food & Nutrition",
+    "Chapter 4 - Resource Management",
+    "Chapter 5 - Communication",
+    "Chapter 6 - Clothing & Textile Care",
+    "Important Questions & Answers"
+  ]
+
+};
+
+  const list = chapters[selectedSubject] || [
+    "Chapter 1",
+    "Chapter 2",
+    "Important Questions & Answers"
+  ];
+
+  let box = document.getElementById("chapterNotes");
+
+  if(!box){
+    box = document.createElement("div");
+    box.id = "chapterNotes";
+    box.className = "card";
+    document.querySelector("#notes .card").appendChild(box);
+  }
+
+  box.innerHTML = `
+    <h3>📚 ${selectedClass} – ${selectedSubject}</h3>
+    <p>🌸 Choose a chapter to start studying:</p>
+
+    ${list.map((chapter, index) => `
+      <button class="btn" style="margin:6px 0;width:100%;"
+        onclick="showChapter('${selectedSubject}','${chapter}')">
+        📖 ${chapter}
+      </button>
+    `).join("")}
+  `;
+
+  box.scrollIntoView({behavior:"smooth"});
+}
+function showChapter(subject, chapter){
+
+  let box = document.getElementById("chapterNotes");
+
+  let notes = `
+    <h3>📚 ${chapter}</h3>
+
+    <div class="card">
+      <h3>🌸 ${subject}</h3>
+
+      <h4>📖 Chapter Notes</h4>
+
+      <p>
+        ✨ इस chapter के important notes यहाँ मिलेंगे।<br><br>
+        📝 Chapter को ध्यान से पढ़ो और important points याद करो।<br>
+        📌 Exam के लिए definitions और important questions जरूर revise करो।<br>
+        💡 Short notes बनाकर रोज थोड़ा-थोड़ा revision करो।
+      </p>
+
+      <h4>⭐ Important Points</h4>
+      <ul>
+        <li>Chapter का मुख्य विषय समझो।</li>
+        <li>Important definitions याद करो।</li>
+        <li>Exam में आने वाले questions की practice करो।</li>
+        <li>Revision के बाद Quiz जरूर करो।</li>
+      </ul>
+
+      <button class="btn" onclick="openChapterNotes()">
+        ⬅️ Back to Chapters
+      </button>
+    </div>
+  `;
+
+  box.innerHTML = notes;
+  box.scrollIntoView({behavior:"smooth"});
+}
+</script>
 </script>
 
 </body>
